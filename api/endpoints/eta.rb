@@ -23,8 +23,7 @@ module Api
           failure = result.failure
           ApplicationContainer['logger'].error("Error occured: #{failure[:error]}. Details: #{failure.to_json}")
 
-          error! 500
-          failure[:error]
+          error!(failure[:error], 500)
         end
       end
     end
