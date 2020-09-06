@@ -3,6 +3,7 @@
 ENV['RACK_ENV'] = 'test'
 
 require 'rack/test'
+require 'webmock/rspec'
 require File.expand_path('../config/application', __dir__)
 
 grape_starter_gem = Gem::Specification.find_by_name('grape-starter').gem_dir

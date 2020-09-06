@@ -10,13 +10,13 @@ class GetCars
   def call(lat, lng, limit)
     response = HTTP.get(config.url, params: { lat: lat, lng: lng, limit: limit })
 
-    bad_response_failure(response) unless response.status.success?
+    return bad_response_failure(response) unless response.status.success?
 
     cars = Oj.load(response.body.to_s)
 
     Success(cars)
   rescue HTTP::Error => e
-    Failure({ error: :get_cars_http_error, description: e })
+    Failure({ error: :get_cars_http_error, description: e.to_s })
   end
 
   private

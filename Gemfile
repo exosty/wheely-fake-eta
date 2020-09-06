@@ -21,6 +21,7 @@ group :development, :test do
   gem 'rake'
   gem 'rspec'
   gem 'rubocop', '~> 0.88'
+  gem 'webmock'
 end
 
 gem 'dry-initializer'
