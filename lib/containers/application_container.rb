@@ -8,11 +8,11 @@ class ApplicationContainer
   end
 
   register(:get_cars) do
-    GetCars.new(logger: self['logger'], config: self['get_cars_config'])
+    GetCars.new(config: self['get_cars_config'])
   end
 
   register(:predict) do
-    Predict.new(logger: self['logger'], config: self['predict_config'])
+    Predict.new(config: self['predict_config'])
   end
 
   register(:get_cars_config) do

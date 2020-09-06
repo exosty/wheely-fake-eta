@@ -17,6 +17,10 @@ class CalculateEta
 
     logger.info("Got cars from GetCars service: #{cars}")
 
-    Success(5)
+    eta_array = yield predict.call(lat, lng, cars)
+
+    logger.info("ETA of cars: #{eta_array}")
+
+    Success(eta_array.min)
   end
 end

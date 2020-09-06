@@ -4,7 +4,6 @@ class GetCars
   extend Dry::Initializer
   include Dry::Monads[:result]
 
-  option :logger
   option :config
 
   def call(lat, lng, limit)
