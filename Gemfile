@@ -25,6 +25,7 @@ end
 
 gem 'dry-initializer'
 gem 'dry-container'
-gem 'dry-monads'
-gem 'httprb'
+gem 'dry-monads', require: 'dry/monads/all'
+gem 'http'
 gem 'anyway_config'
+gem 'oj'
