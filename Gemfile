@@ -22,3 +22,9 @@ group :development, :test do
   gem 'rspec'
   gem 'rubocop', '~> 0.88'
 end
+
+gem 'dry-initializer'
+gem 'dry-container'
+gem 'dry-monads'
+gem 'httprb'
+gem 'anyway_config'
