@@ -7,7 +7,7 @@ class Predict
   option :config
 
   def call(lat, lng, cars)
-    response = HTTP.post(config.url, body: { target: { lat: lat, lng: lng }, source: cars }.to_json)
+    response = HTTP.headers(headers).post(config.url, body: body(lat, lng, cars))
 
     return bad_response_failure(response) unless response.status.success?
 
@@ -19,6 +19,20 @@ class Predict
   end
 
   private
+
+  def headers
+    { 'Content-Type' => 'application/json' }
+  end
+
+  def body(lat, lng, cars)
+    {
+      target: {
+        lat: lat,
+        lng: lng
+      },
+      source: cars
+    }.to_json
+  end
 
   def bad_response_failure(response)
     Failure({

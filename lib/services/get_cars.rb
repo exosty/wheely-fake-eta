@@ -13,7 +13,7 @@ class GetCars
 
     cars = Oj.load(response.body.to_s)
 
-    cars.each { |car| car.delete('id') }
+    cars.map! { |car| { lat: car['lat'].to_f, lng: car['lng'].to_f } }
 
     Success(cars)
   rescue HTTP::Error => e

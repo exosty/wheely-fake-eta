@@ -15,7 +15,17 @@ module Api
 
       get 'eta' do
         args = params.values_at('lat', 'lng', 'limit')
-        { eta: ApplicationContainer['calculate_eta'].call(*args) }
+        result = ApplicationContainer['calculate_eta'].call(*args)
+
+        if result.success?
+          { eta: result.value! }
+        else
+          failure = result.failure
+          ApplicationContainer['logger'].error("Error occured: #{failure[:error]}. Details: #{failure.to_json}")
+
+          error! 500
+          failure[:error]
+        end
       end
     end
   end
