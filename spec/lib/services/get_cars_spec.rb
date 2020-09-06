@@ -14,16 +14,24 @@ describe GetCars do
     let(:query) { { lat: lat, lng: lng, limit: limit } }
 
     context 'when succes' do
-      let(:correct_result) do
+      let(:response_body) do
         [
           { 'id' => 55, 'lat' => 1.111, 'lng' => 2.222 },
           { 'id' => 33, 'lat' => 1.3111, 'lng' => 23.222 },
           { 'id' => 394, 'lat' => -12.3111, 'lng' => -35.222 }
+        ].to_json
+      end
+
+      let(:correct_result) do
+        [
+          { 'lat' => 1.111, 'lng' => 2.222 },
+          { 'lat' => 1.3111, 'lng' => 23.222 },
+          { 'lat' => -12.3111, 'lng' => -35.222 }
         ]
       end
 
       before do
-        stub_request(:get, url).with(query: query).to_return(status: 200, body: correct_result.to_json)
+        stub_request(:get, url).with(query: query).to_return(status: 200, body: response_body)
       end
 
       it 'returns parsed array of cars' do

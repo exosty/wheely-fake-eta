@@ -14,6 +14,8 @@ class GetCars
 
     cars = Oj.load(response.body.to_s)
 
+    cars.each { |car| car.delete('id') }
+
     Success(cars)
   rescue HTTP::Error => e
     Failure({ error: :get_cars_http_error, description: e.to_s })
